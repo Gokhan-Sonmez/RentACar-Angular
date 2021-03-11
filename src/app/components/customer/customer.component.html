@@ -1,0 +1,22 @@
+<h3>{{title}}</h3>
+<table class="table">
+    <thead>
+      <tr>
+       
+        <th scope="col">CustomerId</th>
+        <th scope="col">UserId</th>
+        <th scope="col">CompanyName</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+      
+        <td>{{customer.customerId}}</td>
+        <td>{{customer.userId}}</td>
+        <td>{{customer.companyName}}</td>
+
+      </tr>
+
+    </tbody>
+  </table>
