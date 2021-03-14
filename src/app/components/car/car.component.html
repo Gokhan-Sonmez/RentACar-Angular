@@ -1,24 +1,14 @@
 <h3>{{title}}</h3>
-<table class="table">
-    <thead>
-      <tr>
-       
-        <th scope="col">CarId</th>
-        <th scope="col">CarName</th>
-        <th scope="col">BrandName</th>
-        <th scope="col">ColorName</th>
-        <th scope="col">DailyPrice</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let car of carsDetail">
-      
-        <td>{{car.carId}}</td>
-        <td>{{car.carName}}</td>
-        <td>{{car.brandName}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.dailyPrice}}</td>
-      </tr>
+<div class="row">
+<div *ngFor="let car of carsDetail" class="card" style="width: 18rem;">
+  <img [src]="apiURL + car.imagePath" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{car.carName}}</h5>
+    <p class="card-text">{{car.brandName}} {{car.colorName}} {{car.dailyPrice}}</p>
+    <a (click)="setCurrentCar(car)"
+    routerLink="/carDetail/{{car.carId}}" class="btn btn-primary">detaylar..</a>
+  </div>
+</div>
+</div>
+<router-outlet></router-outlet>
 
-    </tbody>
-  </table>

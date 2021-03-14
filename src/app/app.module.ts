@@ -10,6 +10,8 @@ import { ColorComponent } from './components/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
+import {NgxGalleryModule} from "@kolkov/ngx-gallery"
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import { RentalComponent } from './components/rental/rental.component';
     ColorComponent,
     CustomerComponent,
     NaviComponent,
-    RentalComponent
+    RentalComponent,
+    CarDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxGalleryModule
   ],
   providers: [],
   bootstrap: [AppComponent]
