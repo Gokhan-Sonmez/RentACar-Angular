@@ -1,16 +1,18 @@
 <main role="main" class="container">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
       <ngx-gallery
+        *ngIf="galleryImages"
         [options]="galleryOptions"
         [images]="galleryImages"
         class="ngx-gallery"
       ></ngx-gallery>
     </div>
-
-    <div *ngFor="let car of carsDetail; let i = index" class="col-md-3">
+  </div>
+  <div class="row">
+    <div *ngFor="let car of carsDetail; let i = index" class="col-md-12">
       <div *ngIf="i == 0">
-          <h4>Araba Bilgileri</h4>
+        <h4>Araba Bilgileri</h4>
         <h5 class="card-title">{{ car.carName }}</h5>
         <p class="card-text">
           {{ car.brandName }} {{ car.colorName }} {{ car.dailyPrice }}

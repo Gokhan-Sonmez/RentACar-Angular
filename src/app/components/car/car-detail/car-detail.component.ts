@@ -50,9 +50,25 @@ export class CarDetailComponent implements OnInit {
         imageAutoPlayPauseOnHover: true,
         previewAutoPlay: true,
         previewAutoPlayPauseOnHover: true,
+        imageAnimation: NgxGalleryAnimation.Slide,
+        width: '100%',
+        height: '400px',
+        thumbnailsColumns: 4,
       },
-      { breakpoint: 500, width: '100%', height: '300px', thumbnailsColumns: 3 },
-      { breakpoint: 300, width: '100%', height: '200px', thumbnailsColumns: 2 },
+      {
+        breakpoint: 800,
+        width: '100%',
+        height: '600px',
+        imagePercent: 80,
+        thumbnailsPercent: 20,
+        thumbnailsMargin: 20,
+        thumbnailMargin: 20,
+      },
+      // max-width 400
+      {
+        breakpoint: 400,
+        preview: false,
+      },
     ];
 
     this.galleryImages = this.getImages();
