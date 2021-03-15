@@ -11,7 +11,7 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
-import {NgxGalleryModule} from "@kolkov/ngx-gallery"
+import {NgxGalleryModule} from "@kolkov/ngx-gallery";
 
 @NgModule({
   declarations: [

@@ -24,7 +24,6 @@ export class CarDetailComponent implements OnInit {
     this.activetedRoute.params.subscribe((params) => {
       this.getCarDetailById(params['carId']);
     });
-    
   }
   getCarDetailById(carId: number) {
     this.carService.getCarDetailById(carId).subscribe((response) => {
@@ -33,26 +32,28 @@ export class CarDetailComponent implements OnInit {
     });
   }
 
-
-  getImages(){
-    const imageUrls=[]
-    for(let i =0;i<this.carsDetail.length;i++)
-    {
+  getImages() {
+    const imageUrls = [];
+    for (let i = 0; i < this.carsDetail.length; i++) {
       imageUrls.push({
-        small:this.apiURL+this.carsDetail[i].imagePath,
-        medium:this.apiURL+this.carsDetail[i].imagePath,
-        big:this.apiURL+this.carsDetail[i].imagePath,
-      })
-
+        small: this.apiURL + this.carsDetail[i].imagePath,
+        medium: this.apiURL + this.carsDetail[i].imagePath,
+        big: this.apiURL + this.carsDetail[i].imagePath,
+      });
     }
     return imageUrls;
   }
-  setGallery(){
+  setGallery() {
     this.galleryOptions = [
-      { "imageAutoPlay": true, "imageAutoPlayPauseOnHover": true, "previewAutoPlay": true, "previewAutoPlayPauseOnHover": true }
-      ,{ "breakpoint": 500, "width": "100%", "height": "300px", "thumbnailsColumns": 3 }
-      ,{ "breakpoint": 300, "width": "100%", "height": "200px", "thumbnailsColumns": 2 }
-      ];
+      {
+        imageAutoPlay: true,
+        imageAutoPlayPauseOnHover: true,
+        previewAutoPlay: true,
+        previewAutoPlayPauseOnHover: true,
+      },
+      { breakpoint: 500, width: '100%', height: '300px', thumbnailsColumns: 3 },
+      { breakpoint: 300, width: '100%', height: '200px', thumbnailsColumns: 2 },
+    ];
 
     this.galleryImages = this.getImages();
   }

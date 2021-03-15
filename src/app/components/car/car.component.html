@@ -1,14 +1,19 @@
-<h3>{{title}}</h3>
+<h3>{{ title }}</h3>
 <div class="row">
-<div *ngFor="let car of carsDetail" class="card" style="width: 18rem;">
-  <img [src]="apiURL + car.imagePath" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{car.carName}}</h5>
-    <p class="card-text">{{car.brandName}} {{car.colorName}} {{car.dailyPrice}}</p>
-    <a (click)="setCurrentCar(car)"
-    routerLink="/carDetail/{{car.carId}}" class="btn btn-primary">detaylar..</a>
+  <div *ngFor="let car of carsDetail" class="card" style="width: 18rem">
+    <img [src]="car.imagePath" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{ car.carName }}</h5>
+      <p class="card-text">
+        {{ car.brandName }} {{ car.colorName }} {{ car.dailyPrice }}
+      </p>
+      <a
+        (click)="setCurrentCar(car)"
+        routerLink="/carDetail/{{ car.carId }}"
+        class="btn btn-primary"
+        >detaylar..</a
+      >
+    </div>
   </div>
 </div>
-</div>
 <router-outlet></router-outlet>
-
