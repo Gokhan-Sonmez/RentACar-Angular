@@ -10,16 +10,16 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
+
   title = 'Cars Detail List';
   carsDetail: CarDetail[] = [];
-  imageUrl = environment.baseUrl
-
+  imageUrl = environment.baseUrl;
+  dataLoaded = false;
 
   constructor(
     private carService: CarService,
     private activetedRoute: ActivatedRoute
   ) {}
- 
 
   ngOnInit(): void {
     this.activetedRoute.params.subscribe((params) => {
@@ -35,20 +35,19 @@ export class CarComponent implements OnInit {
   getCarsDetail() {
     this.carService.getCarDetail().subscribe((response) => {
       this.carsDetail = response.data;
-   
+      this.dataLoaded = true;
     });
   }
   getCarsByBrand(brandId: number) {
     this.carService.getCarsByBrand(brandId).subscribe((response) => {
       this.carsDetail = response.data;
-      
+      this.dataLoaded = true;
     });
   }
   getCarsByColor(colorId: number) {
     this.carService.getCarsByColor(colorId).subscribe((response) => {
       this.carsDetail = response.data;
-    
+      this.dataLoaded = true;
     });
   }
-
 }

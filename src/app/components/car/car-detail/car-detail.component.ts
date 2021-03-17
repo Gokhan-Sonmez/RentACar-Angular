@@ -17,6 +17,7 @@ export class CarDetailComponent implements OnInit {
   cars: CarDetail[] = [];
   images: CarImage[] = [];
   imageUrl = environment.baseUrl;
+  dataLoaded = false;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   constructor(
@@ -34,6 +35,7 @@ export class CarDetailComponent implements OnInit {
   getCarDetailById(carId: number) {
     this.carService.getCarDetailById(carId).subscribe((response) => {
       this.cars = response.data;
+      this.dataLoaded = true;
     });
   }
 
@@ -41,6 +43,7 @@ export class CarDetailComponent implements OnInit {
     this.carImageService.getCarImageByCarId(carId).subscribe((response) => {
       this.images = response.data;
       this.setGallery();
+      this.dataLoaded = true;
     });
   }
 
