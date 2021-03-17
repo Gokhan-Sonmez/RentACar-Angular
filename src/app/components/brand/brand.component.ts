@@ -11,7 +11,7 @@ export class BrandComponent implements OnInit {
   title = 'Brand List';
   brands: Brand[] = [];
   currentBrand: Brand;
-  apiURL: string = this.brandService.apiUrl;
+  
 
   constructor(private brandService: BrandService) {}
 

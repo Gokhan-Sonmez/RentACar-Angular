@@ -5,6 +5,7 @@ import { CarService } from 'src/app/services/car.service';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-car-detail',
   templateUrl: './car-detail.component.html',
@@ -12,7 +13,7 @@ import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 })
 export class CarDetailComponent implements OnInit {
   carsDetail: CarDetail[] = [];
-  apiURL: string = this.carService.apiUrl;
+  imageUrl = environment.baseUrl;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   constructor(
@@ -36,9 +37,9 @@ export class CarDetailComponent implements OnInit {
     const imageUrls = [];
     for (let i = 0; i < this.carsDetail.length; i++) {
       imageUrls.push({
-        small: this.apiURL + this.carsDetail[i].imagePath,
-        medium: this.apiURL + this.carsDetail[i].imagePath,
-        big: this.apiURL + this.carsDetail[i].imagePath,
+        small: this.imageUrl + this.carsDetail[i].imagePath,
+        medium: this.imageUrl + this.carsDetail[i].imagePath,
+        big: this.imageUrl + this.carsDetail[i].imagePath,
       });
     }
     return imageUrls;

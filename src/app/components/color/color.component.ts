@@ -11,7 +11,6 @@ export class ColorComponent implements OnInit {
   title = 'Color List';
   colors: Color[] = [];
   currentColor: Color;
-  apiURL: string = this.colorService.apiUrl;
   constructor(private colorService: ColorService) {}
 
   ngOnInit(): void {

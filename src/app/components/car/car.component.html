@@ -1,14 +1,14 @@
 <h3>{{ title }}</h3>
 <div class="row">
   <div *ngFor="let car of carsDetail" class="card" style="width: 18rem">
-    <img [src]="car.imagePath" class="card-img-top" alt="..." />
+    <img [src]="imageUrl + car.imagePath" routerLink="/carDetail/{{ car.carId }}" class="card-img-top" alt="{{car.carName}} Image">
+
     <div class="card-body">
       <h5 class="card-title">{{ car.carName }}</h5>
       <p class="card-text">
         {{ car.brandName }} {{ car.colorName }} {{ car.dailyPrice }}
       </p>
       <a
-        (click)="setCurrentCar(car)"
         routerLink="/carDetail/{{ car.carId }}"
         class="btn btn-primary"
         >detaylar..</a
