@@ -10,8 +10,8 @@
     </div>
   </div>
   <div class="row">
-    <div *ngFor="let car of carsDetail; let i = index" class="col-md-12">
-      <div *ngIf="i == 0">
+    <div *ngFor="let car of cars" class="col-md-12">
+      <div>
         <h4>Araba Bilgileri</h4>
         <h5 class="card-title">{{ car.carName }}</h5>
         <p class="card-text">
