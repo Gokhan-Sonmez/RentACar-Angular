@@ -11,6 +11,9 @@ export class ColorComponent implements OnInit {
   title = 'Color List';
   colors: Color[] = [];
   currentColor: Color;
+ 
+  
+
   constructor(private colorService: ColorService) {}
 
   ngOnInit(): void {
@@ -39,4 +42,6 @@ export class ColorComponent implements OnInit {
       return 'list-group-item';
     }
   }
+
+
 }

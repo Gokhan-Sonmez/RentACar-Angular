@@ -5,24 +5,40 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
+<div class="mb-3">
+  <label for="filterText" class="form-label">Araba Ara</label>
+  <input type="text"[(ngModel)]="filterText"class="form-control"id="filterText"
+  placeholder="Arama ifadesi giriniz"
+  />
+</div>
+<div *ngIf="filterText.length > 2" class="alert alert-primary">
+  {{ filterText }} aradınız
+</div>
+<div>
+<app-car-filter></app-car-filter>
 <h3>{{ title }}</h3>
 <div class="row">
-  <div *ngFor="let car of carsDetail" class="card" style="width: 18rem">
-    <img
-      [src]="imageUrl + car.imagePath"
-      routerLink="/carDetail/{{ car.carId }}"
-      class="card-img-top"
-      alt="{{ car.carName }} Image"
-    />
+  <div
+    *ngFor="let car of carsDetail | filterPipe: filterText" class="card" style="width: 18rem"
+  >
+    <img [src]="imageUrl + car.imagePath"routerLink="/carDetail/{{ car.carId }}"
+      class="card-img-top" alt="{{ car.carName }} Image"/>
 
     <div class="card-body">
       <h5 class="card-title">{{ car.carName }}</h5>
       <p class="card-text">
-        {{ car.brandName }} {{ car.colorName }} {{ car.dailyPrice }}
+        {{ car.brandName }} {{ car.colorName }} {{ car.dailyPrice |currency:"₺" }}
       </p>
-      <a routerLink="/carDetail/{{ car.carId }}" class="btn btn-primary"
-        >detaylar..</a
-      >
+      <div class="d-flex justify-content-between">
+        <div>
+          <a routerLink="/carDetail/{{ car.carId }}" class="btn btn-primary">Detaylar..</a>
+        </div>
+        <div>
+          <a routerLink="/carDetail/{{ car.carId }}" class="btn btn-primary text-right">Kirala..</a>
+        </div>
+   </div>
+      
+        
     </div>
   </div>
 </div>

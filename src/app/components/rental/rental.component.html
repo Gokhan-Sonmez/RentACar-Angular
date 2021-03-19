@@ -1,25 +1,19 @@
-<h3>{{title}}</h3>
-<table class="table">
-    <thead>
-      <tr>
-       
-        <th scope="col">RentalId</th>
-        <th scope="col">BrandName</th>
-        <th scope="col">FirstName</th>
-        <th scope="col">LastName</th>
-        <th scope="col">RentDate</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let rental of rentalsDetail">
-      
-        <td>{{rental.rentalId}}</td>
-        <td>{{rental.brandName}}</td>
-        <td>{{rental.firstName}}</td>
-        <td>{{rental.lastName}}</td>
-        <td>{{rental.rentDate}}</td>
-      </tr>
+<form [formGroup]="rentalAddForm" (ngSubmit)="addRental()">
 
-    </tbody>
-  </table>
+<div class="form-group">
+  <select class="form-control" formControlName="customerId" required id="customerId" name="customerId">
+    <option *ngFor="let customer of customers" [value]="customer.customerId" class="form-control">{{customer.firstName}} {{customer.lastName}}</option>
+  </select>
+</div>
 
+<div class="form-group">
+  <input type="date"  id="rentDate"name="rentDate" formControlName="rentDate" class="form-control">
+</div>
+
+<div>
+<input type="date"  id="returnDate"name="returnDate" formControlName="returnDate" class="form-control">
+</div>
+
+<button type="submit" class="btn btn-primary">Kirala</button>
+
+</form>

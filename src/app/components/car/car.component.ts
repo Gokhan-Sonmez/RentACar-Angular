@@ -4,6 +4,7 @@ import { CarService } from 'src/app/services/car.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
+
 @Component({
   selector: 'app-car',
   templateUrl: './car.component.html',
@@ -15,6 +16,7 @@ export class CarComponent implements OnInit {
   carsDetail: CarDetail[] = [];
   imageUrl = environment.baseUrl;
   dataLoaded = false;
+  filterText="";
 
   constructor(
     private carService: CarService,
@@ -50,4 +52,5 @@ export class CarComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
+
 }

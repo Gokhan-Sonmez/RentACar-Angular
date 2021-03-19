@@ -17,14 +17,30 @@
     </div>
   </div>
   <div class="row">
-    <div *ngFor="let car of cars" class="col-md-12">
-      <div>
-        <h4>Araba Bilgileri</h4>
-        <h5 class="card-title">{{ car.carName }}</h5>
-        <p class="card-text">
-          {{ car.brandName }} {{ car.colorName }} {{ car.dailyPrice }}
-        </p>
-      </div>
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+         
+          <th scope="col">CarName</th>
+          <th scope="col">BrandName</th>
+          <th scope="col">ColorName</th>
+          <th scope="col">DailyPrice</th>
+       
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let car of cars">
+        
+          <td>{{ car.carName }}</td>
+          <td>{{ car.brandName }}</td>
+          <td>{{ car.colorName }}</td>
+          <td>{{ car.dailyPrice | currency:"₺" }}</td>
+        </tr>
+  
+      </tbody>
+    </table>
+       <app-rental></app-rental>
+     
+   
   </div>
 </main>
