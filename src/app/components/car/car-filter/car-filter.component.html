@@ -2,13 +2,13 @@
     <div class="col-md-3">
         <select class="form-select" [(ngModel)]="brandListFilter" id="brandListFilter" aria-label="Default select example">
           <option [selected] [value]="0">Marka Seçiniz</option>
-          <option [selected]="getSelectedBrand(brand.brandId)" *ngFor="let brand of brands" [value]="brand.brandId">{{brand.brandName}}</option>
+          <option [selected]="selectedBrand(brand.brandId)" *ngFor="let brand of brands" [value]="brand.brandId">{{brand.brandName}}</option>
         </select>
         </div>
     <div class="col-md-3"> 
   <select class="form-select" [(ngModel)]="colorListFilter" id="colorListFilter"aria-label="Default select example">
     <option [selected] [value]="0">Renk Seçiniz</option>
-    <option [selected]="getSelectedColor(color.colorId)" *ngFor="let color of colors" [value]="color.colorId">{{color.colorName}}</option>
+    <option [selected]="selectedColor(color.colorId)" *ngFor="let color of colors" [value]="color.colorId">{{color.colorName}}</option>
   </select>
   </div>
 

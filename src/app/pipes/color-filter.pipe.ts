@@ -7,10 +7,9 @@ import { CarDetail } from '../models/carDetail';
 })
 export class ColorFilterPipe implements PipeTransform {
 
-  transform(value: CarDetail[], colorSearch:string): CarDetail[] {
-    colorSearch = colorSearch?colorSearch.toLocaleLowerCase():""
+  transform(value: CarDetail[], colorSearch:number): CarDetail[] {
     return colorSearch?value
-    .filter((c:CarDetail)=>c.colorName.toLocaleLowerCase().indexOf(colorSearch)!==-1)
+    .filter((c:CarDetail)=>c.colorId==colorSearch)
     :value;
   }
 }

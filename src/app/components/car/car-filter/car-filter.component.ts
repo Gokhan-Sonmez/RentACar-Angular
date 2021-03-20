@@ -36,15 +36,15 @@ export class CarFilterComponent implements OnInit {
     });
   }
   
-  getSelectedColor(colorId: number) {
+  selectedColor(colorId: number) {
     if (this.colorListFilter===colorId) {
       return true
     } else {
       return false
     }
   }
-  getSelectedBrand(brandId: number) {
-    if (this.colorListFilter === brandId) {
+  selectedBrand(brandId: number) {
+    if (this.brandListFilter === brandId) {
       return true
     } else {
       return false

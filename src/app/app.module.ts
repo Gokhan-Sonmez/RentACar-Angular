@@ -17,6 +17,7 @@ import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 
 import {NgxGalleryModule} from "@kolkov/ngx-gallery";
 import{ToastrModule} from "ngx-toastr";
+
 import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { ColorFilterPipe } from './pipes/color-filter.pipe';
 import { CarFilterComponent } from './components/car/car-filter/car-filter.component';

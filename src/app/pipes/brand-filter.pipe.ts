@@ -7,10 +7,9 @@ import { CarDetail } from '../models/carDetail';
 })
 export class BrandFilterPipe implements PipeTransform {
 
-  transform(value: CarDetail[], brandSearch:string):CarDetail[] {
-    brandSearch = brandSearch?brandSearch.toLocaleLowerCase():""
+  transform(value: CarDetail[], brandSearch:number): CarDetail[] {
     return brandSearch?value
-    .filter((b:CarDetail)=>b.brandName.toLocaleLowerCase().indexOf(brandSearch)!==-1)
+    .filter((c:CarDetail)=>c.colorId==brandSearch)
     :value;
   }
 
