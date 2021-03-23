@@ -1,0 +1,60 @@
+
+
+  
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><h5 class="title">Brand add / update</h5></div>
+            <div class="card-body">
+
+                <form [formGroup]="brandAddForm">
+
+                    <div class="mb-3">
+                        <label for="brandName">Brand Name</label>
+                        <div class="form-group">
+                            <input type="text" id="brandName" formControlName="brandName" class="form-control" placeholder="Brand Name"/>
+                        </div>
+                    </div>
+    
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-primary" (click)="addBrand()">Add</button>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">brandId</th>
+                <th scope="col">brandName</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let brand of brands">
+              
+                <td>{{brand.brandId}}</td>
+                <td>{{brand.brandName}}</td>
+                <td>
+    
+                    <div class="d-flex">
+                        <div>
+                            <a (click)="updateBrand(brand)" routerLink="" class="btn btn-primary text-right">Update..</a> 
+                        
+                            <a (click)="deleteBrand(brand)" class="btn btn-danger text-right">Delete..</a>
+                            
+                        </div>
+                   </div>
+                 
+              
+                  
+                </td>
+              </tr>
+        
+            </tbody>
+          </table>
+        </div>
+</div>

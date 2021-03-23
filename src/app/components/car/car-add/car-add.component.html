@@ -1,0 +1,107 @@
+
+
+  
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><h5 class="title">Car add /update</h5></div>
+            <div class="card-body">
+
+                <form [formGroup]="carAddForm">
+
+                    <div class="mb-3">
+                        <label for="carName">Car Name</label>
+                        <div class="form-group">
+                            <input type="text" id="carName" formControlName="carName" class="form-control" placeholder="Car Name"/>
+                        </div>
+                    </div>
+                 
+                    <div class="mb-3">
+                        <label for="brandId">Brand</label>
+                    <div class="form-group">
+                        <select class="form-control" formControlName="brandId" required id="brandId" name="brandId">
+                          <option *ngFor="let brand of brands" [value]="brand.brandId" class="form-control">{{brand.brandName}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="productName">Color</label>
+                    <div class="form-group">
+                        <select class="form-control" formControlName="colorId" required id="colorId" name="colorId">
+                          <option *ngFor="let color of colors" [value]="color.colorId" class="form-control">{{color.colorName}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modelYear">Model Year</label>
+                    <div class="form-group">
+                        <input type="number" id="modelYear" formControlName="modelYear" class="form-control" placeholder="modelYear"/>
+    
+                    </div>
+                </div>
+
+                    <div class="mb-3">
+                        <label for="dailyPrice">Daily price</label>
+                    <div class="form-group">
+                        <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control" placeholder="dailyPrice"/>
+    
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="dailyPrice">Description</label>
+                <div class="form-group">
+                    <input type="text" id="description" formControlName="description" class="form-control" placeholder="description"/>
+
+                </div>
+            </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-primary" (click)="addCar()">Ekle</button>
+            </div>
+
+
+        </div>
+        
+    </div>
+    
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">CarId</th>
+                <th scope="col">CarName</th>
+                <th scope="col">ModelYear</th>
+                <th scope="col">DailyPrice</th>
+                <th scope="col">Description</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let car of cars">
+              
+                <td>{{car.carId}}</td>
+                <td>{{car.carName}}</td>
+                <td>{{car.modelYear}}</td>
+                <td>{{car.dailyPrice}}</td>
+                <td>{{car.description}}</td>
+                <td>
+    
+                    <div class="d-flex">
+                        <div>
+                            <a (click)="updateCar(car)" routerLink="" class="btn btn-primary text-right">Update..</a> 
+                        
+                            <a (click)="deleteCar(car)" class="btn btn-danger text-right">Delete..</a>
+                            
+                        </div>
+                   </div>
+                 
+              
+                  
+                </td>
+              </tr>
+        
+            </tbody>
+          </table>
+        </div>
+</div>

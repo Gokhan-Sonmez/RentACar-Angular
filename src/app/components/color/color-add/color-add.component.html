@@ -1,0 +1,59 @@
+
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><h5 class="title">Color add / Update</h5></div>
+            <div class="card-body">
+
+                <form [formGroup]="colorAddForm">
+
+                    <div class="mb-3">
+                        <label for="colorName">Color Name</label>
+                        <div class="form-group">
+                            <input type="text" id="colorName" formControlName="colorName" class="form-control" placeholder="Color Name"/>
+                        </div>
+                    </div>
+    
+                </form>
+            </div>
+            <div class="card-footer">
+                <button  routerLink="colors/add/" class="btn btn-fill btn-primary" (click)="addColor()">Add</button>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-md-6">
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ColorId</th>
+            <th scope="col">ColorName</th>
+            <th scope="col">den</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let color of colors">
+          
+            <td>{{color.colorId}}</td>
+            <td>{{color.colorName}}</td>
+            <td>
+
+                <div class="d-flex">
+                    <div>
+                        <a (click)="updateColor(color)" routerLink="" class="btn btn-primary text-right">Update..</a> 
+                    
+                        <a (click)="deleteColor(color)" class="btn btn-danger text-right">Delete..</a>
+                        
+                    </div>
+               </div>
+             
+          
+              
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    </div>
+    
+</div>

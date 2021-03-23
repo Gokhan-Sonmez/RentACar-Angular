@@ -22,6 +22,10 @@ import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { ColorFilterPipe } from './pipes/color-filter.pipe';
 import { CarFilterComponent } from './components/car/car-filter/car-filter.component';
 import { RentalDetailComponent } from './components/rental/rental-detail/rental-detail.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { CarAddComponent } from './components/car/car-add/car-add.component';
+import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
+import { ColorAddComponent } from './components/color/color-add/color-add.component';
 
 
 @NgModule({
@@ -39,6 +43,10 @@ import { RentalDetailComponent } from './components/rental/rental-detail/rental-
     ColorFilterPipe,
     CarFilterComponent,
     RentalDetailComponent,
+    PaymentComponent,
+    CarAddComponent,
+    BrandAddComponent,
+    ColorAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +55,7 @@ import { RentalDetailComponent } from './components/rental/rental-detail/rental-
     NgxGalleryModule,
     FormsModule,
     ToastrModule.forRoot({
-      positionClass:"toast-bottom-right"
+      positionClass:"toast-top-right"
     }),
     BrowserAnimationsModule,
     ReactiveFormsModule
