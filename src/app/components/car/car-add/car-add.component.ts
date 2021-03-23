@@ -62,13 +62,13 @@ export class CarAddComponent implements OnInit {
           carModel.colorId= parseInt(carModel.colorId.toString())
           this.carService.addCar(carModel).subscribe(response=>{
          
-            this.toastrService.success(response.message,"Başarılı")
+            this.toastrService.success(response.message," Car Added")
           },responseError=>{
             if(responseError.error.Errors.length>0){
               
               for (let i = 0; i < responseError.error.Errors.length; i++) {
     
-                this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"Doğrulama Hatası")
+                this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"You Cant Add")
                 
               }
             }
@@ -98,13 +98,13 @@ export class CarAddComponent implements OnInit {
           carModel.colorId= parseInt(car.colorId.toString())
           this.carService.updateCar(carModel).subscribe(response=>{
          
-            this.toastrService.success(response.message,"Başarılı")
+            this.toastrService.success(response.message,"Car Updated")
           },responseError=>{
             if(responseError.error.Errors.length>0){
               
               for (let i = 0; i < responseError.error.Errors.length; i++) {
     
-                this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"Doğrulama Hatası")
+                this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"You Cant Update")
                 
               }
             }
@@ -123,7 +123,7 @@ export class CarAddComponent implements OnInit {
 
       deleteCar(car: Car){
         this.carService.deleteCar(car).subscribe((response) => {
-          this.toastrService.success(response.message, 'Başarılı');
+          this.toastrService.success(response.message, 'Car deleted');
       });
       this.router.navigate(['cars/add']);
         this.toastrService.success(

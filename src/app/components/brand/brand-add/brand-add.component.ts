@@ -36,14 +36,14 @@ export class BrandAddComponent implements OnInit {
 
       this.brandService.addBrand(brandModel).subscribe(
         (response) => {
-          this.toastrService.success(response.message, 'Başarılı');
+          this.toastrService.success(response.message, 'Brad Added');
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {
             for (let i = 0; i < responseError.error.Errors.length; i++) {
               this.toastrService.error(
                 responseError.error.Errors[i].ErrorMessage,
-                'Doğrulama Hatası'
+                'You Cant Added'
               );
             }
           }
@@ -62,7 +62,7 @@ export class BrandAddComponent implements OnInit {
 
   deleteBrand(brand: Brand){
     this.brandService.deleteBrand(brand).subscribe((response) => {
-      this.toastrService.success(response.message, 'Başarılı');
+      this.toastrService.success(response.message, 'Brand Deleted');
   });
   this.router.navigate(['colors/add']);
     this.toastrService.success(
@@ -77,7 +77,7 @@ export class BrandAddComponent implements OnInit {
       brandModel.brandId = brand.brandId;
       this.brandService.updateBrand(brandModel).subscribe(
         (response) => {
-          this.toastrService.success(response.message, 'Başarılı');
+          this.toastrService.success(response.message, 'Brand Updated');
           this.router.navigate(["colors/add"]);
         },
         (responseError) => {
@@ -85,7 +85,7 @@ export class BrandAddComponent implements OnInit {
             for (let i = 0; i < responseError.error.Errors.length; i++) {
               this.toastrService.error(
                 responseError.error.Errors[i].ErrorMessage,
-                'Doğrulama Hatası'
+                'You cant Updated'
               );
             }
           }

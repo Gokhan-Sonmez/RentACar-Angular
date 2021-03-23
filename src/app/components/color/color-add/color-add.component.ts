@@ -42,7 +42,7 @@ export class ColorAddComponent implements OnInit {
 
       this.colorService.addColor(colorModel).subscribe(
         (response) => {
-          this.toastrService.success(response.message, 'Başarılı');
+          this.toastrService.success(response.message, 'Color Added');
           this.router.navigate(["colors/add"]);
         },
         (responseError) => {
@@ -50,7 +50,7 @@ export class ColorAddComponent implements OnInit {
             for (let i = 0; i < responseError.error.Errors.length; i++) {
               this.toastrService.error(
                 responseError.error.Errors[i].ErrorMessage,
-                'Doğrulama Hatası'
+                'You cant add color'
               );
             }
           }
@@ -68,7 +68,7 @@ export class ColorAddComponent implements OnInit {
 
   deleteColor(color: Color){
     this.colorService.deleteColor(color).subscribe((response) => {
-      this.toastrService.success(response.message, 'Başarılı');
+      this.toastrService.success(response.message, 'Color deleted');
   });
   this.router.navigate(['colors/add']);
     this.toastrService.success(
@@ -83,7 +83,7 @@ export class ColorAddComponent implements OnInit {
       colorModel.colorId = color.colorId;
       this.colorService.updateColor(colorModel).subscribe(
         (response) => {
-          this.toastrService.success(response.message, 'Başarılı');
+          this.toastrService.success(response.message, 'Color updated');
           this.router.navigate(["colors/add"]);
         },
         (responseError) => {
@@ -91,7 +91,7 @@ export class ColorAddComponent implements OnInit {
             for (let i = 0; i < responseError.error.Errors.length; i++) {
               this.toastrService.error(
                 responseError.error.Errors[i].ErrorMessage,
-                'Doğrulama Hatası'
+                'You cant update color'
               );
             }
           }
