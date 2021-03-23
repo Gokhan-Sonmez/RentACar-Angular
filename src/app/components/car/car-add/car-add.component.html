@@ -17,7 +17,7 @@
                     </div>
                  
                     <div class="mb-3">
-                        <label for="brandId">Brand</label>
+                        <label for="brandId">Brand Name</label>
                     <div class="form-group">
                         <select class="form-control" formControlName="brandId" required id="brandId" name="brandId">
                           <option *ngFor="let brand of brands" [value]="brand.brandId" class="form-control">{{brand.brandName}}</option>
@@ -70,6 +70,8 @@
             <thead>
               <tr>
                 <th scope="col">CarId</th>
+                <th scope="col">BrandId</th>
+                <th scope="col">ColorId</th>
                 <th scope="col">CarName</th>
                 <th scope="col">ModelYear</th>
                 <th scope="col">DailyPrice</th>
@@ -81,6 +83,8 @@
               <tr *ngFor="let car of cars">
               
                 <td>{{car.carId}}</td>
+                <td>{{car.brandId}}</td>
+                <td>{{car.colorId}}</td>
                 <td>{{car.carName}}</td>
                 <td>{{car.modelYear}}</td>
                 <td>{{car.dailyPrice}}</td>
@@ -89,7 +93,7 @@
     
                     <div class="d-flex">
                         <div>
-                            <a (click)="updateCar(car)" routerLink="" class="btn btn-primary text-right">Update..</a> 
+                            <a (click)="updateCar(car)"  class="btn btn-primary text-right">Update..</a> 
                         
                             <a (click)="deleteCar(car)" class="btn btn-danger text-right">Delete..</a>
                             

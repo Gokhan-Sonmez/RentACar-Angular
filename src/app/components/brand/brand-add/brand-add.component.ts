@@ -64,7 +64,7 @@ export class BrandAddComponent implements OnInit {
     this.brandService.deleteBrand(brand).subscribe((response) => {
       this.toastrService.success(response.message, 'Brand Deleted');
   });
-  this.router.navigate(['colors/add']);
+  this.router.navigate(['brands/add']);
     this.toastrService.success(
       'Ekleme sayfasına yönlendiriliyorsunuz.',
       
@@ -78,7 +78,7 @@ export class BrandAddComponent implements OnInit {
       this.brandService.updateBrand(brandModel).subscribe(
         (response) => {
           this.toastrService.success(response.message, 'Brand Updated');
-          this.router.navigate(["colors/add"]);
+          this.router.navigate(["brands/add"]);
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {
@@ -94,7 +94,7 @@ export class BrandAddComponent implements OnInit {
     } else {
       this.toastrService.error('Formunuz Eksik', 'Dikkat');
     }
-    this.router.navigate(['colors/add']);
+    this.router.navigate(['brands/add']);
     this.toastrService.success(
       'Ekleme sayfasına yönlendiriliyorsunuz.',
       

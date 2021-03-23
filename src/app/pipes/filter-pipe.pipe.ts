@@ -9,7 +9,6 @@ export class FilterPipePipe implements PipeTransform {
   transform(value:any[],filterText:string ): CarDetail[]{
   
     if(!filterText){
-      console.log('no search')
       return value  
     }
     return value.filter(it=>{   

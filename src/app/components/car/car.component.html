@@ -21,13 +21,14 @@
   <div
     *ngFor="let car of carsDetail | filterPipe: filterText" class="card" style="width: 18rem"
   >
-    <img [src]="imageUrl + car.imagePath"routerLink="/carDetail/{{ car.carId }}"
-      class="card-img-top" alt="{{ car.carName }} Image"/>
+    <img [src]="imageUrl + car.imagePath" (error)="car.imagePath = 'images/default.png'"routerLink="/carDetail/{{ car.carId }}"
+      class="card-img-top" style="height: 280px; width:100%;" alt="{{ car.carName }} Image"/>
 
     <div class="card-body">
-      <h5 class="card-title">{{ car.carName }}</h5>
+      <h5 class="card-title">{{ car.carName }} {{car.modelYear}}</h5>
       <p class="card-text">
-        {{ car.brandName }} {{ car.colorName }} {{ car.dailyPrice |currency:"₺" }}
+        {{ car.brandName }} {{ car.colorName }} {{car.description}} 
+        {{ car.dailyPrice |currency:"₺" }}
       </p>
       <div class="d-flex justify-content-between">
         <div>

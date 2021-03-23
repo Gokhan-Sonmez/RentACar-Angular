@@ -12,12 +12,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
-
   title = 'Cars Detail List';
   carsDetail: CarDetail[] = [];
   imageUrl = environment.baseUrl;
   dataLoaded = false;
-  filterText="";
+  filterText = '';
 
   constructor(
     private carService: CarService,
@@ -26,11 +25,10 @@ export class CarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activetedRoute.params.subscribe((params) => {if(params["brandId"] && params["colorId"]){
-      this.getCarsBySelect(params["brandId"],params["colorId"])
-    }
-      
-      else if (params['brandId']) {
+    this.activetedRoute.params.subscribe((params) => {
+      if (params['brandId'] && params['colorId']) {
+        this.getCarsBySelect(params['brandId'], params['colorId']);
+      } else if (params['brandId']) {
         this.getCarsByBrand(params['brandId']);
       } else if (params['colorId']) {
         this.getCarsByColor(params['colorId']);
@@ -57,13 +55,17 @@ export class CarComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
-  getCarsBySelect(brandId:number, colorId:number){
-    this.carService.getCarsBySelect(brandId,colorId).subscribe(response=>{
-       this.carsDetail=response.data
-       this.dataLoaded=true;
-      if(this.carsDetail.length == 0){
-         this.toastr.info('Arama sonuçunuza ait bir araç bulunmamaktadır.', response.message);
+  getCarsBySelect(brandId: number, colorId: number) {
+    this.carService.getCarsBySelect(brandId, colorId).subscribe((response) => {
+      this.carsDetail = response.data;
+      this.dataLoaded = true;
+      if (this.carsDetail.length == 0) {
+        this.toastr.info(
+          'Arama sonuçunuza ait bir araç bulunmamaktadır.',
+          response.message
+        );
       }
-     })
-}
+    });
+  }
+
 }

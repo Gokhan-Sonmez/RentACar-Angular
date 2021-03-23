@@ -22,24 +22,29 @@
         <tr>
          
           <th scope="col">CarName</th>
+          <th scope="col">ModelYear</th>
           <th scope="col">BrandName</th>
           <th scope="col">ColorName</th>
+          <th scope="col">Description</th>
           <th scope="col">DailyPrice</th>
-       
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let car of cars">
         
           <td>{{ car.carName }}</td>
+          <td>{{ car.modelYear }}</td>
           <td>{{ car.brandName }}</td>
           <td>{{ car.colorName }}</td>
+          <td>{{ car.description }}</td>
           <td>{{ car.dailyPrice | currency:"₺" }}</td>
+          <td><app-rental></app-rental></td>
         </tr>
   
       </tbody>
     </table>
-       <app-rental></app-rental>
+       
      
    
   </div>

@@ -94,8 +94,8 @@ export class CarAddComponent implements OnInit {
         if(this.carAddForm.valid){
           let carModel =Object.assign({},this.carAddForm.value)
           carModel.carId= car.carId;
-          carModel.brandId= parseInt(car.brandId.toString())
-          carModel.colorId= parseInt(car.colorId.toString())
+          carModel.brandId= parseInt(carModel.brandId.toString())
+          carModel.colorId= parseInt(carModel.colorId.toString())
           this.carService.updateCar(carModel).subscribe(response=>{
          
             this.toastrService.success(response.message,"Car Updated")
