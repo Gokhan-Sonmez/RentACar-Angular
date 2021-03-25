@@ -1,8 +1,10 @@
-<button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-primary">Kirala</button>
-<!--<div style="margin-top: 10px;" *ngIf="!rentable" class="alert alert-danger">
-  Bu araç zaten kiralanmış
+<div *ngIf="!rentable">
+  <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-primary">Kirala</button>
 </div>
--->
+<div *ngIf="rentable" class="alert alert-danger">
+  Car already rented!
+</div>
+
 <!-- Modal -->
 <div *ngIf="car" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

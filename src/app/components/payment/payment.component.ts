@@ -56,7 +56,7 @@ export class PaymentComponent implements OnInit {
   
 
 
-    this.router.navigate(["cars/"]);
+    this.router.navigate([""]);
 
     
   }

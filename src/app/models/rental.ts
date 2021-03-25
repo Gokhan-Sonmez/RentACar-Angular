@@ -4,4 +4,5 @@ export class Rental{
     customerId:number;
     rentDate:Date;
     returnDate?:Date;
+    status:boolean;
 }

@@ -6,5 +6,6 @@ export interface RentalDetail{
     companyName:string;
     rentDate:Date;
     returnDate:Date;
-    brandName:string
+    brandName:string;
+    status:boolean;
 }
