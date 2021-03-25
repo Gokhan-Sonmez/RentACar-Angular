@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDetail } from 'src/app/models/carDetail';
@@ -7,7 +6,6 @@ import { CustomerDetail } from 'src/app/models/customerDetail';
 import { Rental } from 'src/app/models/rental';
 import { CarService } from 'src/app/services/car.service';
 import { CustomerService } from 'src/app/services/customer.service';
-import { RentalService } from 'src/app/services/rental.service';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -20,9 +18,8 @@ export class RentalComponent implements OnInit {
   title = 'Rentals Detail List';
   car: CarDetail;
   customers: CustomerDetail[] = [];
-  rentals:Rental[]=[];
+  cars:CarDetail[]=[];
   constructor(
-    private rentalService: RentalService,
     private customerService: CustomerService,
     private carService: CarService,
     private activatedRoute: ActivatedRoute,
@@ -46,9 +43,9 @@ export class RentalComponent implements OnInit {
       if (params['carId']) {
         this.getCarDetailById(params['carId']);
         this.getCustomersDetail();
-        this.getRentalsByCarId(params['carId']);
+     
       }
-      
+      this.checkStatus();
     });
     this.minDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.maxDate = this.datePipe.transform(
@@ -61,11 +58,7 @@ export class RentalComponent implements OnInit {
       this.customers = response.data;
     });
   }
-  getCarDetailById(carId: number) {
-    this.carService.getCarDetailById(carId).subscribe((response) => {
-      this.car = response.data[0];
-    });
-  }
+ 
 
  
   addRental() {
@@ -93,16 +86,19 @@ export class RentalComponent implements OnInit {
   }
 
  
-  getRentalsByCarId(carId: number) {
-    this.rentalService.getRentalsByCarId(carId).subscribe((response) => {
-      this.rentals = response.data;  
-      this.CheckStatus();
+  getCarDetailById(carId: number) {
+    this.carService.getCarDetailById(carId).subscribe((response) => {
+      this.car = response.data[0];
+      this.cars = response.data;  
+      this.checkStatus();
+      console.log( this.cars)
     });
   }
 
-  CheckStatus() {
-    this.rentals.forEach(element => {
+  checkStatus() {
+    this.cars.forEach(element => {
      this.rentable  = element.status
+     console.log(element.status)
     });
    
   }

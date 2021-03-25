@@ -42,7 +42,7 @@ export class ColorAddComponent implements OnInit {
 
       this.colorService.addColor(colorModel).subscribe(
         (response) => {
-          this.toastrService.success(response.message, 'Color Added');
+          this.toastrService.success(response.messages, 'Color Added');
           this.router.navigate(["colors/add"]);
         },
         (responseError) => {
@@ -68,7 +68,7 @@ export class ColorAddComponent implements OnInit {
 
   deleteColor(color: Color){
     this.colorService.deleteColor(color).subscribe((response) => {
-      this.toastrService.success(response.message, 'Color deleted');
+      this.toastrService.success(response.messages, 'Color deleted');
   });
   this.router.navigate(['colors/add']);
     this.toastrService.success(
@@ -83,7 +83,7 @@ export class ColorAddComponent implements OnInit {
       colorModel.colorId = color.colorId;
       this.colorService.updateColor(colorModel).subscribe(
         (response) => {
-          this.toastrService.success(response.message, 'Color updated');
+          this.toastrService.success(response.messages, 'Color updated');
           this.router.navigate(["colors/add"]);
         },
         (responseError) => {

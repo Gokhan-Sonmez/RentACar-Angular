@@ -1,0 +1,31 @@
+<body class="text-center">
+    
+    <main class="form-signin">
+      <form [formGroup]="registerForm">
+        <img class="mb-4" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please Register</h1>
+    
+        <div class="form-floating">
+            <input  formControlName="firstName"type="firstName" class="form-control" id="floatingFirstName" placeholder="FirstName">
+            <label for="floatingInput">FirstName</label>
+          </div>
+          <div class="form-floating">
+            <input  formControlName="lastName"type="lastName" class="form-control" id="floatingLastName" placeholder="LastName">
+            <label for="floatingInput">LastName</label>
+          </div>
+        <div class="form-floating">
+          <input  formControlName="email"type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <button (click)="register()" class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+        <div class="bottom-text"> Hesabın var mı? <a routerLink="/login">Sing in</a></div>
+      </form>
+    </main>
+    
+    
+        
+      </body>

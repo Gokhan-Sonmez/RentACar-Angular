@@ -36,7 +36,8 @@ export class BrandAddComponent implements OnInit {
 
       this.brandService.addBrand(brandModel).subscribe(
         (response) => {
-          this.toastrService.success(response.message, 'Brad Added');
+          this.toastrService.success(response.messages, 'Brad Added');
+          this.router.navigateByUrl('brands/add');
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {
@@ -62,9 +63,9 @@ export class BrandAddComponent implements OnInit {
 
   deleteBrand(brand: Brand){
     this.brandService.deleteBrand(brand).subscribe((response) => {
-      this.toastrService.success(response.message, 'Brand Deleted');
+      this.toastrService.success(response.messages, 'Brand Deleted');
   });
-  this.router.navigate(['brands/add']);
+  this.router.navigateByUrl('brands/add');
     this.toastrService.success(
       'Ekleme sayfasına yönlendiriliyorsunuz.',
       
@@ -77,8 +78,8 @@ export class BrandAddComponent implements OnInit {
       brandModel.brandId = brand.brandId;
       this.brandService.updateBrand(brandModel).subscribe(
         (response) => {
-          this.toastrService.success(response.message, 'Brand Updated');
-          this.router.navigate(["brands/add"]);
+          this.toastrService.success(response.messages, 'Brand Updated');
+          this.router.navigateByUrl('brands/add');
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {

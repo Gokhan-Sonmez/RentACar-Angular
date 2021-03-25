@@ -62,7 +62,7 @@ export class CarComponent implements OnInit {
       if (this.carsDetail.length == 0) {
         this.toastr.info(
           'Arama sonuçunuza ait bir araç bulunmamaktadır.',
-          response.message
+          response.messages
         );
       }
     });

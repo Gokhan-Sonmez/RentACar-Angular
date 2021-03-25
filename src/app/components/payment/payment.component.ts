@@ -42,9 +42,9 @@ export class PaymentComponent implements OnInit {
     }
 
     this.rentalService.addRental(this.rental).subscribe(response=>{
-      this.toastrService.success(response.message,"Car Rented");
+      this.toastrService.success(response.messages,"Car Rented");
       this.paymentService.addPayment(newPayment).subscribe(responsePay=>{
-        this.toastrService.success(responsePay.message,"Success fully Paid");
+        this.toastrService.success(responsePay.messages,"Success fully Paid");
       },responsePayError=>{
             this.toastrService.error(responsePayError.error.messages,"you cant pay")
       });
