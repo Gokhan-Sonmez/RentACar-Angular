@@ -7,6 +7,7 @@ import { Rental } from 'src/app/models/rental';
 import { CarService } from 'src/app/services/car.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { DatePipe } from '@angular/common';
+import { FindekscheckService } from 'src/app/services/findekscheck.service';
 
 @Component({
   selector: 'app-rental',
@@ -25,7 +26,8 @@ export class RentalComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService,
     private datePipe: DatePipe,
-    private router: Router
+    private router: Router,
+    private findeksCheckService:FindekscheckService
   ) {}
 
   rental: Rental = new Rental();
@@ -36,15 +38,17 @@ export class RentalComponent implements OnInit {
   firstDateSelected: boolean = false;
   minDate: string | null;
   maxDate: string | null;
-
+  findex:boolean;
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      if (params['carId']) {
-        this.getCarDetailById(params['carId']);
-        this.getCustomersDetail();
-     
+      if (params['customerId'] && params['carId']) {
+        this.checkFindeks(params['customerId'], params['carId']);
       }
+      else if (params['carId']) {
+        this.getCarDetailById(params['carId']); 
+      }
+      this.getCustomersDetail();
       this.checkStatus();
     });
     this.minDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
@@ -101,6 +105,12 @@ export class RentalComponent implements OnInit {
      console.log(element.status)
     });
    
+  }
+  checkFindeks(customerId:number,carId:number){
+    this.findeksCheckService.findekscheck(customerId,carId).subscribe((response) => {
+      this.findex = response.success
+    });
+
   }
 
 }

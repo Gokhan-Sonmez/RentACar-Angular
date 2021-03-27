@@ -27,8 +27,11 @@
     <div class="card-body">
       <h5 class="card-title">{{ car.carName }} {{car.modelYear}}</h5>
       <p class="card-text">
-        {{ car.brandName }} {{ car.colorName }} {{car.description}} 
-        {{ car.dailyPrice |currency:"₺" }}
+       Brand: {{ car.brandName }} 
+       Color:{{ car.colorName }}
+       Description{{car.description}} 
+       Findex :{{car.findeksScore}}
+       Price : {{ car.dailyPrice |currency:"₺" }}
       </p>
       <div class="d-flex justify-content-between">
         <div>

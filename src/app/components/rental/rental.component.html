@@ -4,6 +4,9 @@
 <div *ngIf="!rentable" class="alert alert-danger">
   Car already rented!
 </div>
+<div *ngIf="!findex" class="alert alert-danger">
+  Findex Score Not Enough
+</div>
 
 <!-- Modal -->
 <div *ngIf="car" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

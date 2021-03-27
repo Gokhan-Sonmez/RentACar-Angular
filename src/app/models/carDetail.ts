@@ -10,5 +10,6 @@ export interface CarDetail{
     status:boolean;
     modelYear:string;
     description:string;
+    findexScore:number;
     
 }
