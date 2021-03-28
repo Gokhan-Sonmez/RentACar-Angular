@@ -4,9 +4,7 @@
 <div *ngIf="!rentable" class="alert alert-danger">
   Car already rented!
 </div>
-<div *ngIf="!findex" class="alert alert-danger">
-  Findex Score Not Enough
-</div>
+
 
 <!-- Modal -->
 <div *ngIf="car" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -55,11 +53,15 @@
               Müşteriler :
             </div>
             <div class="col-md-9">
-              <select #selectCustomer (change)="setCustomerId(selectCustomer.value)" class="form-select" aria-label="Default select example">
-                <option selected>Lütfen bir müşteri seçin</option>
-                <option *ngFor="let customer of customers" [value]="customer.customerId">{{customer.firstName}} {{customer.lastName}}</option>
+              <select #selectCustomer class="form-select" aria-label="Default select example">
+               
+                <option selected *ngFor="let customer of customers" [value]="customer.customerId">{{customer.firstName}} {{customer.lastName}}</option>
               </select>
           </div>
+        </div>
+
+        <div *ngIf="!findex" class="alert alert-danger">
+          Findex Score Not Enough
         </div>
       </div>
       <div class="modal-footer">

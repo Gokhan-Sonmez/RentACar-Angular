@@ -10,30 +10,52 @@
             <a class="nav-link active" aria-current="page" href="">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a routerLink="cars" class="nav-link">Cars</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
+          
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link">About</a>
           </li>
         </ul>
-        <div *ngIf="!authenticated">
+        <div *ngIf="!authenticated" class="me-2">
         <form [formGroup]="loginForm"(ngSubmit)="login()" class="d-flex">
           <input class="form-control me-2" formControlName ="email" type="email" placeholder="e-mail" required>
           <input class="form-control me-2" formControlName ="password" type="password" placeholder="password" required>
         
-          <button class="btn btn-primary my-2 my-sm-0" [disabled]="!loginForm.valid" type="submit">Login</button>
+          <button class="btn btn-primary me-2 my-sm-0" [disabled]="!loginForm.valid" type="submit">Login</button>
         </form>
+        </div>
+
+        <div *ngIf="!authenticated" class="d-flex">
+          <button [routerLink]="['/register']" class="btn btn-primary my-2 my-sm-0" type="submit">Sign-up</button>
+        </div>
+        <div *ngIf="authenticated" class="d-flex nav-item dropdown">
+          <section id="user-panel">
+            <span>
+              Welcome {{userName}}
+            </span>
+            
+            <button class="btn btn-primary my-2 my-sm-0" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+              Panel
+            </button>
+            <ul class="dropdown-menu p-0">
+                <li><a class="dropdown-item" routerLink="/user/settings">Profile Settings</a></li>
+                <div>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <h6 class="dropdown-header">Administration</h6>
+                    <li><a class="dropdown-item" routerLink="/cars/add/">Add Car</a></li>
+                    <li><a class="dropdown-item" routerLink="/colors/add/">Add Color</a></li>
+                    <li><a class="dropdown-item" routerLink="/brands/add/">Add Brand</a></li>
+                </div>
+            </ul>
+        
+            <button style="margin-left: 5px;" class="btn btn-primary my-2 my-sm-0" type="button" (click)="logOut()">
+                LogOut
+            </button>
+        </section>
         </div>
       </div>
     </div>

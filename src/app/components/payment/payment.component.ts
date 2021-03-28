@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Car } from 'src/app/models/car';
 import { Card } from 'src/app/models/cards';
 import { Payment } from 'src/app/models/payment';
 import { Rental } from 'src/app/models/rental';
@@ -21,6 +22,7 @@ export class PaymentComponent implements OnInit {
   cVV:number;
   rental:Rental;
   moneyPaid:number;
+  car:Car;
 
   constructor( private rentalService:RentalService,
     private paymentService:PaymentService,
@@ -35,6 +37,10 @@ export class PaymentComponent implements OnInit {
           this.rental = JSON.parse(params["rental"]);
           
         }
+        else if (params["car"]) {
+          this.rental = JSON.parse(params["car"]);
+          console.log(this.car.dailyPrice)
+        }
       })
     }
   addRental(){
@@ -47,7 +53,7 @@ export class PaymentComponent implements OnInit {
 
     let newPayment: Payment = {
       rentalId:this.rental.rentalId,
-      moneyPaid:this.moneyPaid
+      moneyPaid:this.car.dailyPrice
     }
 
     this.rentalService.addRental(this.rental).subscribe(response=>{

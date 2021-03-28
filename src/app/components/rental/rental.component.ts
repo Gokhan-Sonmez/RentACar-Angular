@@ -8,6 +8,7 @@ import { CarService } from 'src/app/services/car.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { DatePipe } from '@angular/common';
 import { FindekscheckService } from 'src/app/services/findekscheck.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-rental',
@@ -18,8 +19,9 @@ import { FindekscheckService } from 'src/app/services/findekscheck.service';
 export class RentalComponent implements OnInit {
   title = 'Rentals Detail List';
   car: CarDetail;
-  customers: CustomerDetail[] = [];
+  customers: CustomerDetail[]=[];
   cars:CarDetail[]=[];
+  userId:number;
   constructor(
     private customerService: CustomerService,
     private carService: CarService,
@@ -27,28 +29,27 @@ export class RentalComponent implements OnInit {
     private toastrService: ToastrService,
     private datePipe: DatePipe,
     private router: Router,
-    private findeksCheckService:FindekscheckService
+    private findeksCheckService:FindekscheckService,
+    private authService:AuthService,
   ) {}
 
   rental: Rental = new Rental();
   rentDate: Date;
   returnDate: Date;
   customerId: number;
-  rentable: boolean;
+  rentable: boolean = true;;
   firstDateSelected: boolean = false;
   minDate: string | null;
   maxDate: string | null;
-  findex:boolean;
+  findex:boolean = false;
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      if (params['customerId'] && params['carId']) {
-        this.checkFindeks(params['customerId'], params['carId']);
-      }
-      else if (params['carId']) {
+     if (params['carId']) {
         this.getCarDetailById(params['carId']); 
       }
-      this.getCustomersDetail();
+      this.currentUserId();
+      this.getCustomersDetailByUserId();
       this.checkStatus();
     });
     this.minDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
@@ -57,12 +58,26 @@ export class RentalComponent implements OnInit {
       'yyyy-MM-dd'
     );
   }
-  getCustomersDetail() {
-    this.customerService.getCustomersDetail().subscribe((response) => {
+
+  getCustomersDetailByUserId(){
+    this.customerService.getCustomersDetailByUserId(this.userId).subscribe((response) => {
       this.customers = response.data;
+      this.getCustomerId();
+      console.log(this.customers)
     });
   }
  
+  currentUserId(){
+    this.userId = this.authService.getCurrentUserId()
+   
+  }
+
+  getCustomerId(){
+    this.customers.forEach(element => {
+      this.customerId = +element.customerId
+      console.log(this.customerId)
+    });
+  }
 
  
   addRental() {
@@ -73,17 +88,27 @@ export class RentalComponent implements OnInit {
       returnDate: this.returnDate,
       status: this.rentable
     };
-    this.router.navigate(['cars/rental/payment/', JSON.stringify(RentalModel)]);
-    this.toastrService.success(
-      'Ödeme sayfasına yönlendiriliyorsunuz.',
-      'Kiralama başarılı'
-    );
+    let CarModel = {
+      carId: this.car.carId,
+      dailyPrice : this.car.dailyPrice
+    }
+   
+    this.checkFindeks(this.car.carId,this.customerId)
+    if(this.findex==true){
+      this.router.navigate(['cars/rental/payment/', JSON.stringify(RentalModel)]);
+      this.router.navigate(['cars/rental/payment/', JSON.stringify(CarModel)]);
+      this.toastrService.success(
+        'Ödeme sayfasına yönlendiriliyorsunuz.',
+        'Kiralama başarılı'
+      );
+    }
+    else{
+      this.router.navigate(['cars']);
+    }
+   
   }
+  
  
-  setCustomerId(customerId: any) {
-    this.customerId = +customerId;
-    console.log(this.customerId);
-  }
   onChangeEvent(event: any) {
     this.minDate = event.target.value;
     this.firstDateSelected = true;
@@ -106,10 +131,15 @@ export class RentalComponent implements OnInit {
     });
    
   }
-  checkFindeks(customerId:number,carId:number){
+  checkFindeks(carId:number,customerId:number){
     this.findeksCheckService.findekscheck(customerId,carId).subscribe((response) => {
-      this.findex = response.success
-    });
+      this.findex = true;
+      this.toastrService.success(response.messages,"Findeks enogh")
+
+    },responseError=>{
+      this.findex = false;
+              this.toastrService.error(responseError.error.message,"Findeks not enogh")
+        });
 
   }
 

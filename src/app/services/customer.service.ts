@@ -27,6 +27,10 @@ export class CustomerService {
     let newPath = environment.apiUrl+ "customers/getcustomersdetailbyid?customerId="+customerId
     return this.httpClient.get<ListResponseModel<CustomerDetail>>(newPath);
   }
+  getCustomersDetailByUserId(userId:Number): Observable<ListResponseModel<CustomerDetail>> {
+    let newPath = environment.apiUrl+ "customers/getcustomersdetailbyuserid?userId="+userId
+    return this.httpClient.get<ListResponseModel<CustomerDetail>>(newPath);
+  }
 
 
   

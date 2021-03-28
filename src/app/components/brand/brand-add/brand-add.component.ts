@@ -11,13 +11,13 @@ import { BrandService } from 'src/app/services/brand.service';
   styleUrls: ['./brand-add.component.css'],
 })
 export class BrandAddComponent implements OnInit {
-  brands:Brand[];
+  brands: Brand[];
   brandAddForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private brandService: BrandService,
-    private router:Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +37,9 @@ export class BrandAddComponent implements OnInit {
       this.brandService.addBrand(brandModel).subscribe(
         (response) => {
           this.toastrService.success(response.messages, 'Brad Added');
-          this.router.navigateByUrl('brands/add');
+          setTimeout(function () {
+            location.reload();
+          }, 100);
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {
@@ -61,25 +63,27 @@ export class BrandAddComponent implements OnInit {
     });
   }
 
-  deleteBrand(brand: Brand){
+  deleteBrand(brand: Brand) {
     this.brandService.deleteBrand(brand).subscribe((response) => {
       this.toastrService.success(response.messages, 'Brand Deleted');
-  });
-  this.router.navigateByUrl('brands/add');
-    this.toastrService.success(
-      'Ekleme sayfasına yönlendiriliyorsunuz.',
-      
-    );
+      setTimeout(function () {
+        location.reload();
+      }, 100);
+    });
+
+    this.toastrService.success('Ekleme sayfasına yönlendiriliyorsunuz.');
   }
 
-  updateBrand(brand: Brand){
+  updateBrand(brand: Brand) {
     if (this.brandAddForm.valid) {
       let brandModel = Object.assign({}, this.brandAddForm.value);
       brandModel.brandId = brand.brandId;
       this.brandService.updateBrand(brandModel).subscribe(
         (response) => {
           this.toastrService.success(response.messages, 'Brand Updated');
-          this.router.navigateByUrl('brands/add');
+          setTimeout(function () {
+            location.reload();
+          }, 100);
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {
@@ -95,10 +99,9 @@ export class BrandAddComponent implements OnInit {
     } else {
       this.toastrService.error('Formunuz Eksik', 'Dikkat');
     }
-    this.router.navigate(['brands/add']);
-    this.toastrService.success(
-      'Ekleme sayfasına yönlendiriliyorsunuz.',
-      
-    );
+    setTimeout(function () {
+      location.reload();
+    }, 100);
+    this.toastrService.success('Ekleme sayfasına yönlendiriliyorsunuz.');
   }
 }

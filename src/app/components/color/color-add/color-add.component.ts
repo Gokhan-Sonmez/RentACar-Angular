@@ -8,21 +8,19 @@ import { ColorService } from 'src/app/services/color.service';
 @Component({
   selector: 'app-color-add',
   templateUrl: './color-add.component.html',
-  styleUrls: ['./color-add.component.css']
+  styleUrls: ['./color-add.component.css'],
 })
 export class ColorAddComponent implements OnInit {
   colorAddForm: FormGroup;
-  colors:Color[];
+  colors: Color[];
   constructor(
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private colorService: ColorService,
-    private router:Router,
-   
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    
     this.createColorAddForm();
     this.getColors();
   }
@@ -43,7 +41,9 @@ export class ColorAddComponent implements OnInit {
       this.colorService.addColor(colorModel).subscribe(
         (response) => {
           this.toastrService.success(response.messages, 'Color Added');
-          this.router.navigate(["colors/add"]);
+          setTimeout(function () {
+            location.reload();
+          }, 100);
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {
@@ -59,32 +59,32 @@ export class ColorAddComponent implements OnInit {
     } else {
       this.toastrService.error('Formunuz Eksik', 'Dikkat');
     }
-    this.router.navigate(['colors/add']);
-    this.toastrService.success(
-      'Ekleme sayfasına yönlendiriliyorsunuz.',
-      
-    );
+    setTimeout(function () {
+      location.reload();
+    }, 100);
+    this.toastrService.success('Ekleme sayfasına yönlendiriliyorsunuz.');
   }
 
-  deleteColor(color: Color){
+  deleteColor(color: Color) {
     this.colorService.deleteColor(color).subscribe((response) => {
       this.toastrService.success(response.messages, 'Color deleted');
-  });
-  this.router.navigate(['colors/add']);
-    this.toastrService.success(
-      'Ekleme sayfasına yönlendiriliyorsunuz.',
-      
-    );
+    });
+    setTimeout(function () {
+      location.reload();
+    }, 100);
+    this.toastrService.success('Ekleme sayfasına yönlendiriliyorsunuz.');
   }
 
-  updateColor(color: Color){
+  updateColor(color: Color) {
     if (this.colorAddForm.valid) {
       let colorModel = Object.assign({}, this.colorAddForm.value);
       colorModel.colorId = color.colorId;
       this.colorService.updateColor(colorModel).subscribe(
         (response) => {
           this.toastrService.success(response.messages, 'Color updated');
-          this.router.navigate(["colors/add"]);
+          setTimeout(function () {
+            location.reload();
+          }, 100);
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {
@@ -100,12 +100,9 @@ export class ColorAddComponent implements OnInit {
     } else {
       this.toastrService.error('Formunuz Eksik', 'Dikkat');
     }
-    this.router.navigate(['colors/add']);
-    this.toastrService.success(
-      'Ekleme sayfasına yönlendiriliyorsunuz.',
-      
-    );
+    setTimeout(function () {
+      location.reload();
+    }, 100);
+    this.toastrService.success('Ekleme sayfasına yönlendiriliyorsunuz.');
   }
-
-
 }

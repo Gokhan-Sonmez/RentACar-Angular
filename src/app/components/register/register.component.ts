@@ -7,19 +7,18 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-
   registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
-              private toastrService: ToastrService,
-              private authService: AuthService,
-              private router: Router) {
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private toastrService: ToastrService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
- 
     this.createRegisterForm();
   }
 
@@ -28,22 +27,25 @@ export class RegisterComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
 
   register() {
     if (this.registerForm.valid) {
       let registerModel = Object.assign({}, this.registerForm.value);
-      this.authService.register(registerModel).subscribe(response => {
+      this.authService.register(registerModel).subscribe(
+        (response) => {
           this.toastrService.info(response.messages);
+
+
           this.router.navigate(['login']);
-        },responseError=>{
-          console.log(responseError.error.messages)
-          this.toastrService.error(responseError.error.messages)
+        },
+        (responseError) => {
+          console.log(responseError.error.messages);
+          this.toastrService.error(responseError.error.messages);
         }
       );
     }
   }
-
 }

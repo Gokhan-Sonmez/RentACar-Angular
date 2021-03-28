@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navi.component.css']
 })
 export class NaviComponent implements OnInit {
-
+  userName:"";
   loginUser:LoginModel;
   loginForm:FormGroup;
   authenticated:boolean =false;
@@ -21,6 +21,7 @@ export class NaviComponent implements OnInit {
 
     ngOnInit(): void {
       this.createLoginForm();
+      
     }
     createLoginForm(){
       this.loginForm = this.formBuilder.group({
@@ -38,6 +39,7 @@ export class NaviComponent implements OnInit {
         this.authService.login(loginModel).subscribe(response=>{
           this.toastrService.info(response.messages)
           localStorage.setItem("token",response.data.token)
+          this.currentUserName();
           this.authenticated = true
         },responseError=>{
           this.toastrService.error(responseError.error)
@@ -47,11 +49,14 @@ export class NaviComponent implements OnInit {
     }
 
     logOut(){
-      this.authService.logOut();
+      return this.authService.logOut();
     }
 
   isAuthenticated(){
     this.authenticated= this.authService.isAuthenticated();
   }
-
+  currentUserName(){
+    this.userName = this.authService.getCurrentUserName()
+   
+  }
 }
