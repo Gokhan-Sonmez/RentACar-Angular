@@ -4,4 +4,5 @@ export interface Card{
     nameOnTheCard:string;
     expirationDate:string;
     cVV:number;
+    customerId:number
 }

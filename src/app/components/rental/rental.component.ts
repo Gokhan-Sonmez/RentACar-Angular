@@ -41,17 +41,20 @@ export class RentalComponent implements OnInit {
   firstDateSelected: boolean = false;
   minDate: string | null;
   maxDate: string | null;
-  findex:boolean = false;
+  findex:boolean;
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
      if (params['carId']) {
         this.getCarDetailById(params['carId']); 
+        
       }
-      this.currentUserId();
-      this.getCustomersDetailByUserId();
-      this.checkStatus();
     });
+
+    this.checkStatus();
+    this.currentUserId();
+    this.getCustomersDetailByUserId();
+    this.getCustomerId();
     this.minDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.maxDate = this.datePipe.transform(
       new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
@@ -59,11 +62,14 @@ export class RentalComponent implements OnInit {
     );
   }
 
+  
+
   getCustomersDetailByUserId(){
     this.customerService.getCustomersDetailByUserId(this.userId).subscribe((response) => {
       this.customers = response.data;
       this.getCustomerId();
       console.log(this.customers)
+     
     });
   }
  
@@ -86,25 +92,17 @@ export class RentalComponent implements OnInit {
       carId: this.car.carId,
       rentDate: this.rentDate,
       returnDate: this.returnDate,
-      status: this.rentable
-    };
-    let CarModel = {
-      carId: this.car.carId,
-      dailyPrice : this.car.dailyPrice
+      status: !this.rentable
     }
-   
-    this.checkFindeks(this.car.carId,this.customerId)
-    if(this.findex==true){
-      this.router.navigate(['cars/rental/payment/', JSON.stringify(RentalModel)]);
-      this.router.navigate(['cars/rental/payment/', JSON.stringify(CarModel)]);
+    
+ 
+      this.router.navigate(['/cars/rental/payment/', JSON.stringify(RentalModel)]);
+      //this.router.navigate(['cars/rental/payment/', JSON.stringify(CarModel)]);
+     // this.router.navigate(['cars/rental/payment/', JSON.stringify(CustomerModel)]);
       this.toastrService.success(
         'Ödeme sayfasına yönlendiriliyorsunuz.',
         'Kiralama başarılı'
       );
-    }
-    else{
-      this.router.navigate(['cars']);
-    }
    
   }
   
@@ -127,20 +125,26 @@ export class RentalComponent implements OnInit {
   checkStatus() {
     this.cars.forEach(element => {
      this.rentable  = element.status
+     console.log("kiralama durumu")
      console.log(element.status)
     });
    
   }
   checkFindeks(carId:number,customerId:number){
     this.findeksCheckService.findekscheck(customerId,carId).subscribe((response) => {
-      this.findex = true;
-      this.toastrService.success(response.messages,"Findeks enogh")
+      this.findex = response.success
+     console.log("findex durumu")
+     console.log(this.findex)
 
     },responseError=>{
-      this.findex = false;
               this.toastrService.error(responseError.error.message,"Findeks not enogh")
+              
         });
 
+  }
+
+  setFindeks(){
+    this.checkFindeks(this.car.carId,this.customerId)
   }
 
 }

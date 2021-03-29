@@ -1,5 +1,5 @@
 <div *ngIf="rentable">
-  <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-primary">Kirala</button>
+  <button (click)="setFindeks()" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-primary">Kirala</button>
 </div>
 <div *ngIf="!rentable" class="alert alert-danger">
   Car already rented!

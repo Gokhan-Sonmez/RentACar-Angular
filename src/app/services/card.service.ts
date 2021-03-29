@@ -32,4 +32,21 @@ export class CardService {
     let newPath = environment.apiUrl+ "cards/get?cardId="+cardId
     return this.httpClient.get<ListResponseModel<Card>>(newPath);
   }
+
+  
+
+deleteCard(card:Card):Observable<ResponseModel> {
+  const httpOptions ={
+    headers:new HttpHeaders({
+      'Content-Type':  'application/json',
+    })
+  }
+  let newPath = environment.apiUrl+ "cards/delete"
+  return this.httpClient.post<ResponseModel>(newPath,card,httpOptions);
+}
+
+getByCustomerId(customerId:number): Observable<ListResponseModel<Card>> {
+  let newPath = environment.apiUrl+ "cards/getcardbycustomerid?customerid="+customerId
+  return this.httpClient.get<ListResponseModel<Card>>(newPath);
+}
 }
