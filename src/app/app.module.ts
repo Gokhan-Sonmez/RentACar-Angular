@@ -30,6 +30,8 @@ import { ColorAddComponent } from './components/color/color-add/color-add.compon
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
+import { UserProfileComponent } from './components/navi/user-profile/user-profile.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import { RegisterComponent } from './components/register/register.component';
     ColorAddComponent,
     LoginComponent,
     RegisterComponent,
+    UserProfileComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -42,7 +42,8 @@ export class NaviComponent implements OnInit {
           this.currentUserName();
           this.authenticated = true
         },responseError=>{
-          this.toastrService.error(responseError.error)
+          console.log(responseError)
+          this.toastrService.error(responseError.error.messages)
         }
         )
       }

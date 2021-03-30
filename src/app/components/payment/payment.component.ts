@@ -22,7 +22,8 @@ export class PaymentComponent implements OnInit {
   nameOnTheCard: string;
   lastName: string;
   expirationDate: string;
-  cVV: number;
+  cvv: number;
+
   rental: Rental;
   rentals: Rental;
   moneyPaid: number;
@@ -31,6 +32,7 @@ export class PaymentComponent implements OnInit {
   customer: Customer;
   cardId: number;
   customerCard: Card[] = [];
+
   constructor(
     private rentalService: RentalService,
     private paymentService: PaymentService,
@@ -41,7 +43,7 @@ export class PaymentComponent implements OnInit {
     private carService: CarService,
     private formBuilder: FormBuilder
   ) {}
-  creditCardForm: FormGroup;
+  cardAddForm: FormGroup;
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       if (params['rental']) {
@@ -50,19 +52,20 @@ export class PaymentComponent implements OnInit {
     });
     this.getCar();
     this.getCustomerCard();
-    // this.setCreditCardForm()
+    this.setCreditCardForm();
   }
 
-  /* setCreditCardForm(){
-    this.creditCardForm = this.formBuilder.group({
-      savedCards: [""],
-      nameOnTheCard: ["",Validators.required],
-      cardNumber: ["", Validators.required],
-      cardCvv: ["", Validators.required],
-      expirationDate: ["", Validators.required],
-    })
-  }*/
+  setCreditCardForm() {
+    this.cardAddForm = this.formBuilder.group({
+      customerCard: [''],
+      nameOnTheCard: ['', Validators.required],
+      cardNumber: ['', Validators.required],
+      cvv: ['', Validators.required],
+      expirationDate: ['', Validators.required],
+    });
+  }
   addRental() {
+    console.log('çalıştı');
     this.rentalService.addRental(this.rental).subscribe(
       (response) => {
         this.toastrService.success(response.messages, 'Car Rented');
@@ -80,7 +83,7 @@ export class PaymentComponent implements OnInit {
       cardNumber: this.cardNumber,
       nameOnTheCard: this.nameOnTheCard,
       expirationDate: this.expirationDate,
-      cVV: +this.cVV,
+      cvv: +this.cvv,
       customerId: this.rental.customerId,
     };
 
@@ -96,6 +99,9 @@ export class PaymentComponent implements OnInit {
         );
       }
     );
+  }
+  noSaveCard() {
+    this.addPayment();
   }
 
   getCar() {
@@ -117,7 +123,27 @@ export class PaymentComponent implements OnInit {
       .subscribe((response) => {
         this.customerCard = response.data;
         console.log(this.customerCard);
+        this.setCard();
       });
+  }
+
+  setCard() {
+    this.customerCard.forEach((element) => {
+      this.cardNumber = element.cardNumber;
+      this.nameOnTheCard = element.nameOnTheCard;
+      this.expirationDate = element.expirationDate;
+      this.cvv = element.cvv;
+      console.log(element.cvv);
+    });
+  }
+
+  setCardInfos() {
+    this.cardAddForm.patchValue({
+      cardNumber: this.cardNumber,
+      nameOnTheCard: this.nameOnTheCard,
+      expirationDate: this.expirationDate,
+      cvv: this.cvv,
+    });
   }
 
   getRentalId() {
@@ -125,8 +151,8 @@ export class PaymentComponent implements OnInit {
       .getRentalsByCarId(this.rental.carId)
       .subscribe((response) => {
         this.rentals = response.data[0];
-
         console.log(this.car.dailyPrice);
+        console.log(this.rentals);
       });
   }
 

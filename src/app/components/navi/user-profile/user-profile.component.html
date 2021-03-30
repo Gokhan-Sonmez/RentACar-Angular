@@ -1,0 +1,26 @@
+<section id="user-panel">
+    <span>
+      Welcome {{userName}}
+    </span>
+    
+    <button class="btn btn-primary my-2 my-sm-0" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+      Panel
+    </button>
+    <ul class="dropdown-menu p-0">
+        <li><a class="dropdown-item" routerLink="/user/settings">Profile Settings</a></li>
+        <div>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <h6 class="dropdown-header">Administration</h6>
+            <li><a class="dropdown-item" routerLink="/cars/add/">Add Car</a></li>
+            <li><a class="dropdown-item" routerLink="/colors/add/">Add Color</a></li>
+            <li><a class="dropdown-item" routerLink="/brands/add/">Add Brand</a></li>
+        </div>
+    </ul>
+
+    <button style="margin-left: 5px;" class="btn btn-primary my-2 my-sm-0" type="button" (click)="logOut()">
+        LogOut
+    </button>
+</section>

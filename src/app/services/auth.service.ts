@@ -9,6 +9,7 @@ import { TokenModel } from '../models/tokenModel';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { LocalStorageService } from './local-storage.service';
+import { UserUpdate } from '../models/userUpdate';
 
 
 @Injectable({
@@ -33,6 +34,11 @@ export class AuthService {
   register(register:RegisterModel): Observable<SingleResponseModel<TokenModel>> {
     let newPath = environment.apiUrl+ "auth/register"
     return this.httpClient.post<SingleResponseModel<TokenModel>>(newPath, register);
+  }
+
+  update(update:UserUpdate): Observable<SingleResponseModel<TokenModel>> {
+    let newPath = environment.apiUrl+ "auth/update"
+    return this.httpClient.post<SingleResponseModel<TokenModel>>(newPath, update);
   }
 
   isAuthenticated(){
