@@ -1,3 +1,33 @@
+* Projenin İçeriği
+* CRUD Operasyonlar
+* Add, Ekleme
+* Read, Okuma
+* Update, Güncelleme
+* Delete, Silme
+* Filtreleme
+* String veri ile
+* Id ile çoklu filtreleme
+* Auth
+* Login
+* Register
+* Profile Update
+* Password Update
+* Reactive Forms
+* Validasyon işlemleri
+* Toastr
+* Componentler arası veri Transfer, Child to Parent Data Binding
+* Locale Storage kontrolü
+* Models
+* Services
+* Custom pipes
+* Interceptor
+* Bootsrat v5 Beta 2
+![ansayfa](https://user-images.githubusercontent.com/62436096/113051604-d6dbd400-91ae-11eb-8646-fcdf1c01ba2f.PNG)
+![kiralama](https://user-images.githubusercontent.com/62436096/113051454-a85df900-91ae-11eb-832a-cab0b4b51d1e.PNG)
+
+
+
+
 # RentACar
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
