@@ -5,8 +5,7 @@
 * Update, Güncelleme
 * Delete, Silme
 * Filtreleme
-* String veri ile
-* Id ile çoklu filtreleme
+* String veri ile Id ile çoklu filtreleme
 * Auth
 * Login
 * Register
