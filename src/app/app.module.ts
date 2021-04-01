@@ -19,6 +19,7 @@ import {NgxGalleryModule} from "@kolkov/ngx-gallery";
 import{ToastrModule} from "ngx-toastr";
 
 
+
 import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { ColorFilterPipe } from './pipes/color-filter.pipe';
 import { CarFilterComponent } from './components/car/car-filter/car-filter.component';
@@ -32,6 +33,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { UserProfileComponent } from './components/navi/user-profile/user-profile.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CarAddImageComponent } from './components/car/car-add-image/car-add-image.component';
 
 
 @NgModule({
@@ -57,6 +59,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     RegisterComponent,
     UserProfileComponent,
     ProfileComponent,
+    CarAddImageComponent,
   ],
   imports: [
     BrowserModule,

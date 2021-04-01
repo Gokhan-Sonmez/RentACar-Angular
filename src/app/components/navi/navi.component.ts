@@ -14,14 +14,14 @@ export class NaviComponent implements OnInit {
   userName:"";
   loginUser:LoginModel;
   loginForm:FormGroup;
-  authenticated:boolean =false;
+  authenticated:boolean;
   constructor(private formBuilder:FormBuilder,private authService:AuthService,
     private toastrService:ToastrService,
     private router:Router) { }
 
     ngOnInit(): void {
       this.createLoginForm();
-      
+      this.isAuthenticated();
     }
     createLoginForm(){
       this.loginForm = this.formBuilder.group({
@@ -40,7 +40,7 @@ export class NaviComponent implements OnInit {
           this.toastrService.info(response.messages)
           localStorage.setItem("token",response.data.token)
           this.currentUserName();
-          this.authenticated = true
+          this.isAuthenticated();
         },responseError=>{
           console.log(responseError)
           this.toastrService.error(responseError.error.messages)

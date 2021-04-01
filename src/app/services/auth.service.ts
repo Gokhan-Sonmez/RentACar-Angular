@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   isAuthenticated(){
-    if(localStorage.getItem(this.TOKEN_KEY)){
+    if(this.storeService.getItem(this.TOKEN_KEY)){
       return true;
     }
     else{
@@ -57,13 +57,7 @@ export class AuthService {
   },200)
   }
 
-  loggedIn(){
-    return this.jwtHelper.isTokenExpired(this.TOKEN_KEY)
-  }
  
-  
-
-
   getDecodedToken(){
     this.token = this.storeService.getItem(this.TOKEN_KEY);
     return  this.jwtHelper.decodeToken(this.token);
