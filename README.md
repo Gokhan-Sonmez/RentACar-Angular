@@ -10,7 +10,6 @@
 * Login
 * Register
 * Profile Update
-* Password Update
 * Reactive Forms
 * Validasyon işlemleri
 * Toastr
